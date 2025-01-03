@@ -1,0 +1,32 @@
+var typed = new Typed(".text", {
+    strings: ["Frontend Developer", "YouTuber", "Web Developer"],
+    typeSpeed: 100,
+    backSpeed:100,
+    backDelay: 1000,
+    loop: true
+})
+
+
+let sections = document.querySelectorAll('section');
+let navLinks = document.querySelectorAll('header nav a');
+
+window.onscroll = () => {
+    sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 150;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
+
+        if (top >= offset && top < offset + height) {
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                // Ensure the element exists before adding the 'active' class
+                let activeLink = document.querySelector('header nav a[href*=' + id + ']');
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                }
+            });
+        }
+    });
+};
+
